@@ -1,0 +1,42 @@
+MIDS W205 Project 1 – Maura Cullen, Bala Ganeshan, Jonah Smith, Mike Frazzini
+
+Data Overview:
+S3 Bucket: midsw205project1 (access only allowed to specific AWS user id’s for project team)
+
+Subdirectories:
+/weblogs
+
+  Contains 1 week (7 days 6/26/2017-7/2/2017 of tab delimited raw weblogs consolidated by day across all eBags servers.
+  
+  The following data elements are present:
+  utc_datetime,
+  mt_datetime,  --utc datetime converted to mountain time
+  utc_time_ms,  --utc time milliseconds
+  s_ip, --server ip
+  cs_method,  --request method
+  s_sitename,  --server sitename/domain
+  cs_uri_stem,  --URI
+  s_computername,  --server computername
+  cs_uri_query,  --URI query string
+  cs_user_agent,  --client user agent
+  s_port,  --server port
+  cs_referer,  --referring page
+  cs_host,  --host header name
+  sc_status,  --request status code
+  sc_win32_status,  --server status code
+  sc_bytes,  --server to client bytes sent
+  cs_bytes,  --client to server bytes received
+  time_taken_ms,  --time taken for request to complete in milliseconds
+  visitorid_hashed  --eBags unique visitor id, cryptographically hashed
+  
+  Weblogs are anonymized with cookie data removed and visitor id transformed using AES 256 cryptographic hash. With the following HIVE function: reflect('org.apache.commons.codec.digest.DigestUtils', 'sha256Hex', 'visitorid').  Weblogs are filtered to only include product detail page views (cs_uri_stem like '%/product/%' or cs_uri_stem like '%/hproduct/%') and cart requests (cs_uri_stem like '%/cart/%')
+%/product/% records represent views of product detail pages by specific visitor id.
+%/hproduct/% records represent views of hybrid product detail pages by specific visitor id.
+%/cart/add% records represent cart add of product (look at cs_referrer to see what product was added although, and this is confusing and important, it’s the number preceding the ?productid= URL variable that corresponds and relates to the product_catalog information).  For example, this is a card/add referrer for <ProductId>282152</ProductId>
+https://www.ebags.com/product/pathfinder-gear/gear-burro-bag/282152?productid=10328895
+
+
+/product_catalog
+  Full XML dump of active product catalog.  Key data elements:
+<ProductCatalogItem>
+  <ProductId>1057_2</ProductId>  - Note: this data element with underscore and trailing information truncated will match the id referenced in the web logs.  Each product will have product level information like weights and dimensions, product features, various attributes, and image references, as well as child level information for each associated SKU.
