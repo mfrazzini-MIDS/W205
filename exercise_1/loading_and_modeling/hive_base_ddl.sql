@@ -1,4 +1,4 @@
-DROP TABLE hospital_schema;
+DROP TABLE IF EXISTS hospital_schema;
 
 CREATE EXTERNAL TABLE hospital_schema
 (Provider_ID string,
@@ -17,10 +17,10 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospital';
 
-SELECT count(*) from hospital_schema;
+SELECT count(distinct Provider_ID) from hospital_schema;
 
 
-DROP TABLE procedure_effective_care_schema;
+DROP TABLE IF EXISTS procedure_effective_care_schema;
 
 CREATE EXTERNAL TABLE procedure_effective_care_schema
 (Provider_ID string,
@@ -44,10 +44,10 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care';
 
-SELECT count(*) from procedure_effective_care_schema;
+SELECT count(distinct Provider_ID) from procedure_effective_care_schema;
 
 
-DROP TABLE procedure_readmissions_deaths_schema;
+DROP TABLE IF EXISTS procedure_readmissions_deaths_schema;
 
 CREATE EXTERNAL TABLE procedure_readmissions_deaths_schema
 (Provider_ID string,
@@ -73,10 +73,10 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions';
 
-SELECT count(*) from procedure_readmissions_deaths_schema;
+SELECT count(distinct Provider_ID) from procedure_readmissions_deaths_schema;
 
 
-DROP TABLE measure_dates_schema;
+DROP TABLE IF EXISTS measure_dates_schema;
 
 CREATE EXTERNAL TABLE measure_dates_schema
 (Measure_Name string,
@@ -90,10 +90,10 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measure';
 
-SELECT count(*) from measure_dates_schema;
+SELECT count(distinct Measure_ID) from measure_dates_schema;
 
 
-DROP TABLE 20150528_survey_responses_schema;
+DROP TABLE IF EXISTS 20150528_survey_responses_schema;
 
 CREATE EXTERNAL TABLE 20150528_survey_responses_schema
 (Provider_Number string,
@@ -134,5 +134,5 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/surveys';
 
-SELECT count(*) from 20150528_survey_responses_schema;
+SELECT count(distinct Provider_Number) from 20150528_survey_responses_schema;
 
