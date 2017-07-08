@@ -1,3 +1,6 @@
+-- hive_base_ddl.sql (HIVE script)
+-- This script creates and executes DDL for base HIVE tables for MIDS W205 exercise_1
+
 DROP TABLE IF EXISTS hospital_schema;
 
 CREATE EXTERNAL TABLE hospital_schema
@@ -16,8 +19,6 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\')
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/hospital';
-
-SELECT count(distinct Provider_ID) from hospital_schema;
 
 
 DROP TABLE IF EXISTS procedure_effective_care_schema;
@@ -43,8 +44,6 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\')
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/effective_care';
-
-SELECT count(distinct Provider_ID) from procedure_effective_care_schema;
 
 
 DROP TABLE IF EXISTS procedure_readmissions_deaths_schema;
@@ -73,8 +72,6 @@ WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/readmissions';
 
-SELECT count(distinct Provider_ID) from procedure_readmissions_deaths_schema;
-
 
 DROP TABLE IF EXISTS measure_dates_schema;
 
@@ -89,8 +86,6 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\')
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/measure';
-
-SELECT count(distinct Measure_ID) from measure_dates_schema;
 
 
 DROP TABLE IF EXISTS 20150528_survey_responses_schema;
@@ -133,6 +128,3 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = '"', "escapeChar" = '\\')
 STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/surveys';
-
-SELECT count(distinct Provider_Number) from 20150528_survey_responses_schema;
-
