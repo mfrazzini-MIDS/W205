@@ -1,0 +1,19 @@
+  Which states are models for high quality hospital care in the Centers for Medicare and Medicaid Services (CMS) Hospital Compare project data set?  To answer that question, the approach taken is to first rank hospitals so we can then rank them by state.  Extensive ranking approach and process was done to rank hospitals (see best_hospitals.txt).
+
+  The results from the best hospitals approach was then summarized by state and the cumulative .golf score. (lowest is best) was calculated across all of the hospitals and aggregated by state to find the top 10 states with quality of care.  Based on this, the conclusion and result is that these are the top 10 states with quality of care given consistently best scores across a variety of procedures (note District of Columbia is listed and was purposefully left in as there are a significant number of quality hospitals in this important US locality):
+
+Rank  State  Golf Score:
+========================
+1   DE      66104
+2   DC      135598
+3   RI      191525
+4   VT      253304
+5   HI      290340
+6   CT      335641
+7   AK      341872
+8   NH      459614
+9   WY      545225
+10  NV      557820
+
+These queries for these results can be found in best_states.sql.
+
