@@ -1,0 +1,27 @@
+     Which hospitals in the Centers for Medicare and Medicaid Services (CMS) Hospital Compare project data set are models of high quality care?  The World Health Organization defines a hospital as round-the-clock health care institutions providing a variety of acute, convalescent, and terminal care, with diagnostic and curative services for these care areas[1].  Given this definition, and the intuitive understanding of what a hospital is, it seems reasonable to filter out the 373 hospitals out of the 4,824 hospitals in the CMS Hospital Compare data to be analyzed.
+
+     Using the filtered hospital data, we can then join to the two different procedure data files to determine which hospitals have the most consistently high scores for a variety of procedures.  One procedure file provides scores on general timeliness and effectiveness of a variety of procedures and the other provides scores on procedures related to readmissions and death.  
+
+     In preliminarily examining the procedure data we see that it is sparsely complete as various procedures do not have score data available for many hospitals.  Because of this, and our desire to compare procedures as widely as possible across the set of hospitals, we will limit our procedure analysis to procedures that are in the 75th percentile of completeness with respect to score availability.  Additionally, footnotes for the procedure data were reviewed and it is determined that any scores with footnotes cautioning incomplete or inaccurate data will also be suppressed (footnotes 1, 5, 7, and 11).  The result of this preliminary examination will limit our analysis to 12 effective care procedures and 7 readmissions and death procedures.  For more detail on this analysis, please refer to the hospital_variability.txt file.
+
+  Scores for each procedure were ranked.  Please note, since only rudimentary domain knowledge exists with the analyst, and since scoring systems varied by procedure, assumptions were made to attempt to infer best ranking (example: for PN_6 procedure, which is Pneumonia patients given the most appropriate initial antibiotics, it was assumed higher score was better, and so on for each procedure analyzed).  Additionally, with limited domain knowledge, it is impossible to accurately establish any impact weighting or differential between procedures.  Therefore, each procedure was treated equally, best hospitals were ranked on each procedure best to worst, and cumulative .golf score. (lowest is best) was calculated across all of the procedures to produce the top 10 hospitals with quality of care.  Based on this, the conclusion and result is that these are the top 10 hospitals with quality of care given consistently best scores across a variety of procedures:
+
+rank  provider_id  hospital_name city  state golf_score
+=======================================================
+1  370220  ONECORE HEALTH  OKLAHOMA CITY   OK      2
+2  330270  HOSPITAL FOR SPECIAL SURGERY    NEW YORK        NY      781
+3  450831  SURGERY SPECIALTY HOSPITALS OF AMERICA SE HOUSTON       PASADENA        TX      900
+4  460043  OREM COMMUNITY HOSPITAL OREM    UT      1278
+5  450804  TEXAS ORTHOPEDIC HOSPITAL       HOUSTON TX      1801
+6  370210  OKLAHOMA SURGICAL HOSPITAL, LLC TULSA   OK      1839
+7  100008  BAPTIST HOSPITAL OF MIAMI INC   MIAMI   FL      1955
+8  490144  NOVANT HEALTH HAYMARKET MEDICAL CENTER  HAYMARKET       VA      1997
+9  100258  DELRAY MEDICAL CENTER   DELRAY BEACH    FL      2302
+10 500052  GROUP HEALTH CENTRAL HOSPITAL   SEATTLE WA      2614
+
+These queries for these results can be found in best_hospitals.sql.
+
+References:
+----------------
+[1]http://www.who.int/hospitals/en/
+
