@@ -1,0 +1,21 @@
+
+~
+How do hospital quality analysis and scores correlate with patient survey responses?  First, we must determine the appropriate survey score(s) to utilize to gauge best hospitals by survey data so we can correlate the results to the procedure based best quality analysis already done and summarized in best_hospitals.txt.  Reviewing the data and the data dictionary it appears that a HCAHPS survey domain score, is recommended and obtain by adding the two HCAHPS scores in the data[1].  Additionally, it is reasonable to include the two overall rating scores in the data converted two percentages:
+
+overall_rating_of_hospital_achievement_pct, overall_rating_of_hospital_improvement_pct
+
+This provides for a composite score which can be correlated to the golf scores obtained in the best quality analysis.  Once calculated, and a Pearson coefficient of correlation is run on the two scores, the result is:
+How do hospital quality analysis and scores correlate with patient survey responses?  First, we must determine the appropriate survey score(s) to utilize to gauge best hospitals by survey data so we can correlate the results to the procedure based best quality analysis already done and summarized in best_hospitals.txt.  Reviewing the data and the data dictionary it appears that a HCAHPS survey domain score, is recommended and obtain by adding the two HCAHPS scores in the data[1].  Additionally, it is reasonable to include the two overall rating scores in the data converted two percentages:
+overall_rating_of_hospital_achievement_pct, overall_rating_of_hospital_improvement_pct
+This provides for a composite score which can be correlated to the golf scores obtained in the best quality analysis.  Once calculated, and a Pearson coefficient of correlation is run on the two scores, the result is:
+
+-0.012161434297020256
+
+This does not indicate any correlation between the two scoring methods.  While this could mean the survey and patient responses can differ widely between the procedural scores and analysis, further in-depth analysis should be done to really determine the reason for this result as intuitively it seems there should be stronger correlation.
+Query to produce these results can be found in hospitals_and_patients.sql.
+
+
+References:
+---------------
+[1] http://www.hcahpsonline.org/files/August%202013%20HCAHPS%20Fact%20Sheet2.pdf
+
